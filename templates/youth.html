@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+Youth Member
+{% endblock%}
+{% block head%}
+<link rel="stylesheet" href="{{url_for('static', filename = 'youth.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="notice">Click on the Activity Night Title to select your event: </div>
+    <table class="table">
+        <thead>
+            <tr class="head">
+                
+                <th> {{ colnames[1] }} </th>
+                <th> {{ colnames[2] }} </th>
+                <th> {{ colnames[3] }} </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                
+                <td class="first"><a href="/youth/attend?nightid={{event[0]}}"><button type="button" class="btn btn-outline-info">{{event[1]}}</button></a></td>
+                <td>{{event[2]}}</td>
+                <td>{{event[3]}}</td>
+                
+            </tr>
+            {%endfor%}
+
+        </tbody>
+
+    </table>
+</div>
+
+{% endblock %}

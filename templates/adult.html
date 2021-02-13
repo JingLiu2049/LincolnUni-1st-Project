@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+Adult Member
+{% endblock%}
+{% block head%}
+<link rel="stylesheet" href="{{url_for('static', filename = 'adult.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container login">
+    <div class="container pt-5">
+    <form action="/adult/group_info" method="post" name="register">
+        <div class="container contant">
+            <label for="a_name" >Please select your name</label>
+            <select name="a_name" id="a_name" class="form-select" required>
+                {% for name in names %}
+                <option value="{{name[0]}}">
+                    {{name[1]}} {{name[2]}}
+                </option>
+                {%endfor%}
+            </select>
+        </div>
+        <div class="container contant">
+            <label for="a_group" >Please select your group</label>
+            <select name="a_group" id="a_group" class="form-select capital" required>
+                {% for group in groups %}
+                <option value="{{group[1]}}">{{group[0]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+            <div class="container button">
+                <button type="submit" name="group" class="btn btn-outline-info center">
+                    Log in 
+                </button>
+            </div>
+
+
+
+    </form>
+</div>
+</div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

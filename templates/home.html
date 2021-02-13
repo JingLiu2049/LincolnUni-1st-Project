@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock%}
+{% block head%}
+<link rel="stylesheet" href="{{url_for('static', filename = 'home.css')}}">
+
+{% endblock %}
+{% block content %}
+<div class="home">
+    <h1>Welcome to The Youth Club Attendance System, please choose your member type!</h1>
+    <a href="{{url_for('youth') }}">
+        <button type="button" class="btn btn-outline-info btn-lg">Young Member</button>
+    </a>
+    <a href="{{url_for('adult') }}">
+        <button type="button" class="btn btn-outline-info btn-lg">Adult Member</button>
+    </a>
+</div>
+{% endblock %}

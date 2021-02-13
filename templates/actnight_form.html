@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}
+    Activity Night Information
+{% endblock%}
+{% block head%}
+<style>
+    button{
+        width: 30%;
+        margin: 0 5%;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {# to add validation #}
+        <form action="/adult/activitynight" method="POST">
+            <legend>Add event for Group <strong>{{groupname}}</strong> </legend>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="groupid"  value="{{groupid}}" hidden>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Activity Night Title</span>
+                <input type="text" class="form-control" name="nighttitle" aria-describedby="basic-addon1" required >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Activity Night Date</span>
+                <input type="date" class="form-control" name="nightdate" aria-describedby="basic-addon1" required>
+            </div>
+            <div class="mb-3 form-floating">
+
+                <textarea name="description" class="form-control" placeholder="Description:"
+                    id="description" style="height:180px;"></textarea>
+                <label for="description">Description:</label>
+            </div>
+            <div class="container button">
+
+
+                <button type="submit" name="group" class="btn btn-outline-info">
+                    Submit
+                </button>
+                <button type="reset" name="group" class="btn btn-outline-info">
+                    Reset
+                </button>
+            </div>
+        
+        </form>
+    </div>
+    <div>
+
+    </div>
+{% endblock %}

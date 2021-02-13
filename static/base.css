@@ -1,0 +1,54 @@
+a{
+    text-decoration: none;
+}
+header{
+    background-color: #E8E7E3;
+}
+section{
+    min-height: 580px;
+}
+footer p{
+    text-align: center;
+}
+
+i{
+    color: #FF6709;
+}
+tr.head{
+    background-color: #E8E7E3;
+    
+    font-weight: bold;
+}
+table{
+    text-align: center;
+    text-transform:capitalize;
+}
+.notice{
+    padding: 2% 5%;
+    font-size: 1.3em;
+}
+.clearfix::before, .clearfix::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+.capital{
+    text-transform: capitalize;
+    font-weight: bold;
+    
+}
+button.center{
+    display: block;
+    width: 30%;
+    margin: 10% auto 0;
+}
+div.button{
+    text-align: center;
+    padding-top: 5%;
+}
+legend{
+    padding-top: 3%;
+}
+strong{
+    text-transform: capitalize;
+}

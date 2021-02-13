@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}
+Group Information
+{% endblock%}
+{% block head%}
+<link rel="stylesheet" href="{{url_for('static', filename = 'group_info.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container clearfix">
+    <div class="notice">
+        <span class="title">Member list of Group <strong>{{groupname}}</strong> :</span>
+        <span class="add">
+            <a href="/adult/memberUpdate?groupid={{groupid}}">
+                Add a new Member
+            </a>
+        </span>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr class="head">
+
+                <th>Name</th>
+                <th>Attendance</th>
+                <th>{{colnames[3]}}</th>
+                <th>{{colnames[4]}}</th>
+                <th>{{colnames[7]}}</th>
+                <th>{{colnames[8]}}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for groupmember in groupmembers %}
+            <tr>
+                <td>
+                    <a href="/adult/memberUpdate?memberid={{groupmember[0]}}&groupid={{groupmember[5]}}"
+                        title="Mmber details">
+                        {{groupmember[1]}} {{groupmember[2]}}
+                    </a>
+                </td>
+                <td>
+                    {% if groupmember[4] == none %}
+                    <a href="/adult/attend_info?memberid={{groupmember[0]}}&groupid={{groupmember[5]}}"
+                        title="Attendance details">
+                        Events involved
+                    </a>
+                    {% else %}
+                    Events involved
+                    {% endif %}
+                </td>
+                <td>{{groupmember[3]}} </td>
+                <td>{{groupmember[4]}} </td>
+                <td>{{groupmember[7]}} </td>
+                <td>{{groupmember[8]}} </td>
+            </tr>
+
+            {% endfor%}
+        </tbody>
+
+    </table>
+</div>
+
+<div class="container">
+    <div class="notice clearfix">Event list of Group <strong>{{groupname}}</strong> :
+        <span class="add">
+            <a href="/adult/activitynight?groupname={{groupname}}">
+                Add an Activity Night Event
+            </a>
+        </span>
+
+
+
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr class="head">
+
+                <th>{{event_cols[1]}}</th>
+                <th>{{event_cols[2]}}</th>
+                <th>{{event_cols[3]}}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for event in events %}
+            <tr>
+                <td><a href="/adult/attend_info?nightid={{event[0]}}&groupid={{groupid}}"
+                        title="Event attendance details">
+                        {{event[1]}}
+                    </a>
+                </td>
+
+
+                <td>{{event[2]}}</td>
+                <td>{{event[3]}}</td>
+            </tr>
+
+            {% endfor%}
+        </tbody>
+
+    </table>
+
+</div>
+{% endblock %}
+{% block js %}
+{% endblock %}

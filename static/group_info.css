@@ -1,0 +1,9 @@
+span.add{
+    float: right;
+}
+span.add a{
+    color: #ff8a41;
+}
+span.add a:hover{
+    color:#ff6200 ;
+}

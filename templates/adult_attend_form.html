@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}
+Attendance Information
+{% endblock%}
+{% block head%}
+<link rel="stylesheet" href="{{url_for('static', filename = 'attendance.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="notice">
+        {% if membername %}
+        Activity list of Member <span class="capital">{{membername}} </span> in Group <span class="capital">{{groupname}}</span>:
+        {% else %}
+        <span class="capital">{{groupname}}'</span> Member Attendance list of Event: <span class="capital">{{nighttitle}}</span> at <span class="capital">{{nightdate}}</span>
+        {% endif %}
+    </div>
+    <form action="/attend_confirm" method="POST">
+        <table class="table">
+            <thead>
+                <tr class="head">
+                    {% if membername%} <th>{{colnames[7]}}</th><th>{{colnames[8]}}</th>
+                    {% else %} <th>Name</th>
+                    {% endif %}
+                    <th>{{colnames[9]}}</th>
+                    <th>{{colnames[10]}}</th>
+                    <th>{{colnames[11]}}</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for night in nights %}
+                <tr>
+                    {% if membername%} 
+                    <td><label for="{{night[2]}},{{night[6]}}">{{night[7]}}</label></td>
+                    <td><label for="{{night[2]}},{{night[6]}}">{{night[8]}}</label></td>
+                    {% else %}
+                    <td><label for="{{night[2]}},{{night[6]}}">{{night[3]}} {{night[4]}}</label></td>
+                    {% endif %}
+                    <td><label for="{{night[2]}},{{night[6]}}">{{night[9]}}</label></td>
+                    <td><label for="{{night[2]}},{{night[6]}}">{{night[10]}}</label></td>
+                    <td><label for="{{night[2]}},{{night[6]}}">{{night[11]}}</label></td>
+                    <td><input type="radio" id="{{night[2]}},{{night[6]}}" name="event"
+                            value="{{night[2]}},{{night[6]}}" required></td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+        <div class="attend_s container clearfix">
+            <div class="mb-3 form-floating">
+
+                <textarea name="note" rows="7" class="form-control" placeholder="Leave Your Message:"
+                    id="floatingTextarea2" style="height:180px;"></textarea>
+                <label for="floatingTextarea2">Leave Your Message:</label>
+            </div>
+            <input type="radio" class="btn-check" name="status" id="present" autocomplete="off" value="present" checked>
+            <label class="btn btn-outline-success" for="present">Present</label>
+            <input type="radio" class="btn-check" name="status" id="notified" autocomplete="off"
+                value="notified absence">
+            <label class="btn btn-outline-success" for="notified">Notified Absence</label>
+            <input type="radio" class="btn-check" name="status" id="nopresent" autocomplete="off" value="not present">
+            <label class="btn btn-outline-success" for="nopresent">Not Present</label>
+        </div>
+        <div>
+            {% if membername %}
+            <input type="radio" name="distinguish" value="adult_by_group" checked hidden>
+            {% else %}
+            <input type="radio" name="distinguish" value="adult_by_event" checked hidden>
+            {% endif %}
+        </div>
+        <div class="container button">
+            
+                <button type="submit" class="btn btn-outline-dark submit">Submit</button>
+                <button type="reset" class="btn btn-outline-dark submit">Reset</button>
+                <a href="/adult/group_info?groupid={{groupid}}">
+                <button type="button" class="btn btn-outline-dark submit">Back to Group information</button>
+                </a>
+            </div>
+        </div>
+        
+    </form>
+</div>
+
+
+{% endblock %}

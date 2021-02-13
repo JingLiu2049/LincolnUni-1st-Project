@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}
+Group Member Details
+{% endblock%}
+{% block head%}
+<link rel="stylesheet" href="{{url_for('static', filename = 'memberform.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="container wrapper ">
+            {# to add validation #}
+        <form action="/adult/memberUpdate" class="needs-validation" method="POST">
+
+            <legend>Group Member information</legend>
+            {# if request come from hyperlink new member variable memberdetails is false, the page displays a blank form,
+                otherwise, form self-fills with exist data for update #}
+            {% if memberdetails %}
+            <input type="text" name="memberid" value="{{memberdetails[0]}}" hidden>
+            {% else %}
+            <input type="text" name="memberid" value="{{memberid}}" hidden>
+            {% endif %}
+
+            <input type="text" id="groupid" name="groupid" hidden {% if memberdetails %} value="{{memberdetails[5]}}" {%
+                else %} value="{{groupid}}" {% endif %}>
+
+            <div class="input-group ">
+                <span class="input-group-text" id="basic-addon1">First name</span>
+                <input type="text" class="form-control" name="firstname" aria-describedby="basic-addon1" required {% if
+                    memberdetails %} value="{{memberdetails[1]}}" {% endif %}>
+            </div>
+            <div class="input-group ">
+                <span class="input-group-text" id="basic-addon2">Family name</span>
+                <input type="text" class="form-control" name="familyname" aria-describedby="basic-addon2" required {% if
+                    memberdetails %} value="{{memberdetails[2]}}" {% endif %}>
+            </div>
+            <div class="input-group ">
+                <span class="input-group-text" id="basic-addon3">Date of birth</span>
+                <input {% if memberdetails %} type="text" value="{{memberdetails[7]}}" {% else %} type="date" {% endif
+                    %} required class="form-control" name="birthday" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group ">
+                <span class="input-group-text" id="basic-addon4">Joined date</span>
+                <input {% if memberdetails %} type="text" value="{{memberdetails[3]}}" {% else %} type="date" {% endif
+                    %} required class="form-control" name="joineddate" aria-describedby="basic-addon4">
+            </div>
+            
+            <div class="input-group " {% if not memberdetails %} hidden {% endif %}>
+                <span class="input-group-text" id="basic-addon5">Left date</span>
+                <input type="text" class="form-control" name="leftdate" aria-describedby="basic-addon5" {% if
+                    memberdetails %} value="{{memberdetails[4]}}"{% else %} value="none" {% endif %} >
+            </div>
+            <div class="input-group">
+                {% if memberdetails %}
+                <span class="input-group-text" id="basic-addon6">Adult leader</span>
+                <input type="text" class="form-control" name="leader" aria-describedby="basic-addon6" {% if
+                    memberdetails %} value="{{memberdetails[8]}}" {% endif %}>
+                {% else %}
+                <span class="input-group-text" id="basic-addon6">Adult leader</span>
+                <select name="leader" class="form-control" aria-describedby="basic-addon6">
+                    <option value="true">Yes</option>
+                    <option value="false" selected>No</option>
+                </select>
+                {% endif %}
+
+            </div>
+            <div class="container button">
+
+
+                <button type="submit" name="group" class="btn btn-outline-info">
+                    Submit
+                </button>
+                <button type="reset" name="group" class="btn btn-outline-info">
+                    Reset
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

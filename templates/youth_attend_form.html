@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}
+    Attendance
+{% endblock%}
+{% block head%}
+<link rel="stylesheet" href="{{url_for('static', filename = 'attendance.css')}}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="notice">Please select your name and mark your Attendance Status:</div>
+        <form action="/attend_confirm" method="POST" >
+            <table class="table">
+                <thead>
+                    <tr class="head">
+                        <th>{{ colnames[0] }}</th>
+                        <th>{{ colnames[2] }}</th>
+                        <th>{{ colnames[3] }}</th>
+                        <th>{{ colnames[5] }}</th>
+                        <th>{{ colnames[6] }}</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for event in nights %}
+                    <tr>
+                        <td><label for="{{event[1]}},{{event[4]}}">{{event[0]}}</label></td>
+                        <td><label for="{{event[1]}},{{event[4]}}">{{event[2]}}</label></td>
+                        <td><label for="{{event[1]}},{{event[4]}}">{{event[3]}}</label></td>
+                        <td><label for="{{event[1]}},{{event[4]}}">{{event[5]}}</label></td>
+                        <td><label for="{{event[1]}},{{event[4]}}">{{event[6]}}</label></td>
+
+                        <td><input type="radio" id="{{event[1]}},{{event[4]}}" name="event" value="{{event[1]}},{{event[4]}}" required></td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+
+            <div class="attend_s container clearfix">
+                <div class="mb-3 form-floating">
+
+                <textarea name="note" rows="7" class="form-control" placeholder="Leave Your Message:" id="floatingTextarea2" style="height:180px;"style="height:180px;"></textarea>
+                <label for="floatingTextarea2">Leave Your Message:</label>
+                </div>
+
+                <input type="radio" class="btn-check" name="status" id="present" autocomplete="off" value="present" checked>
+                <label class="btn btn-outline-success" for="present">Present</label>
+
+                <input type="radio" class="btn-check" name="status" id="notified" autocomplete="off" value="notified absence">
+                <label class="btn btn-outline-success" for="notified">Notified Absence</label>
+
+                <input type="radio" class="btn-check" name="status" id="nopresent" autocomplete="off" value="not present" >
+                <label class="btn btn-outline-success" for="nopresent">Not Present</label>
+            </div>
+            <div>
+                <input type="radio" name="distinguish" value="youth" checked hidden>
+            </div>
+            <div class="container button">
+                <button type="submit" class="btn btn-outline-dark submit">Submit</button>
+                <button type="reset" class="btn btn-outline-dark submit">Reset</button>
+                <a href="/youth">
+                <button type="button" class="btn btn-outline-dark submit">Back to Events lsit</button>
+                </a>
+            </div>
+        </form>
+    </div>
+    </div>
+{% endblock %}

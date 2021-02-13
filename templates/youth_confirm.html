@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+Confirm
+{% endblock%}
+{% block head%}
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    <p class="notice">Your attendance status has been marked!</p>
+    <table class="table">
+        <thead>
+            <tr class="head">
+                <th>Name</th>
+                <th>{{colnames[0]}}</th>
+                <th>{{colnames[7]}}</th>
+                <th>{{colnames[8]}}</th>
+                <th>{{colnames[9]}}</th>
+                <th>{{colnames[10]}}</th>
+                <th>{{colnames[11]}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for info in infos %}
+            <tr>
+                <td>{{info[3]}} {{info[4]}}</td>
+                <td>{{info[0]}}</td>
+                <td>{{info[7]}}</td>
+                <td>{{info[8]}}</td>
+                <td>{{info[9]}}</td>
+                <td>{{info[10]}}</td>
+                <td>{{info[11]}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <a href="/">
+        <button class="btn btn-outline-info center">
+            Back to Home Page
+        </button>
+    </a>
+</div>
+<div>
+    {% endblock %}

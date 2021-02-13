@@ -1,0 +1,17 @@
+div.wrapper{
+    width: 50%;
+    padding-top: 6%;
+    
+}
+span.input-group-text{
+    display: inline-block;
+    width: 25%;
+}
+
+button{
+    width: 20%;
+    margin: 0 5%;
+}
+div.input-group{
+    margin-bottom: 2%;
+}

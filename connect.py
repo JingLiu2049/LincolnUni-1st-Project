@@ -1,0 +1,5 @@
+dbuser = "postgres"
+dbpass = "slv89bAsjAosc0pMl2iP" 
+dbhost = "jingdb.cg7hefuvakgx.us-east-1.rds.amazonaws.com" 
+dbport = "5432"
+dbname = "app"
